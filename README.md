@@ -13,7 +13,7 @@ AWS ECS를 생성하는 Terraform 모듈 입니다.
 
 ```hcl
 module "ecs" {
-  source = "komskb/terraform-aws-ecs"
+  source = "komskb/ecs/aws"
 
   project = "${var.project}"
   environment = "${var.environment}"
