@@ -142,7 +142,7 @@ module "container_definition" {
     },
   ]
 
-  environment = [concat(local.container_definition_environment, var.custom_environment_variables, )]
+  environment = concat(local.container_definition_environment, var.custom_environment_variables, )
 }
 
 resource "aws_ecs_task_definition" "this" {
