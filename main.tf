@@ -122,13 +122,11 @@ module "container_definition" {
     },
   ]
 
-  log_options = [
-    {
+  log_options = {
       "awslogs-region"        = data.aws_region.current.name
       "awslogs-group"         = aws_cloudwatch_log_group.this.name
       "awslogs-stream-prefix" = "ecs"
-    },
-  ]
+  }
 
   environment = merge(local.container_definition_environment, var.custom_environment_variables, )
 }
