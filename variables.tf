@@ -1,23 +1,23 @@
 variable "project" {
   description = "Project name to use on all resources created (VPC, ALB, etc)"
-  type        = "string"
+  type        = string
 }
 
 variable "environment" {
   description = "Deploy environment"
-  type        = "string"
+  type        = string
   default     = "production"
 }
 
 variable "tags" {
   description = "A map of tags to use on all resources"
-  type        = "map"
+  type        = map(string)
   default     = {}
 }
 
 variable "subnet_ids" {
   description = "A list of IDs of existing private subnets inside the VPC"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -30,12 +30,12 @@ variable "cloudwatch_log_retention_in_days" {
 # ECS Service / Task
 variable "security_groups" {
   description = "ALB target group arns"
-  type        = "list"
+  type        = list(string)
 }
 
 variable "target_group_arn" {
   description = "ALB target group arn"
-  type        = "string"
+  type        = string
 }
 
 variable "ecs_service_assign_public_ip" {
@@ -45,7 +45,7 @@ variable "ecs_service_assign_public_ip" {
 
 variable "policies_arn" {
   description = "A list of the ARN of the policies you want to apply"
-  type        = "list"
+  type        = list(string)
   default     = ["arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"]
 }
 
@@ -92,24 +92,25 @@ variable "api_port" {
 
 variable "env_jwt_secret_key" {
   description = "JWT Token secret key"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "env_flask_env" {
   description = "Flask env"
-  type        = "string"
+  type        = string
   default     = "prodction"
 }
 
 variable "evn_database_uri" {
   description = "Database uri (ex: mysql://)"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "custom_environment_variables" {
   description = "List of additional environment variables the container will use (list should contain maps with `name` and `value`)"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
+

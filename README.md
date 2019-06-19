@@ -61,7 +61,7 @@ Terraform version 0.11.13 or newer is required for this module to work.
 | cloudwatch\_log\_retention\_in\_days | Retention period of service CloudWatch logs | string | `"7"` | no |
 | container\_memory\_reservation | The amount of memory (in MiB) to reserve for the container | string | `"128"` | no |
 | custom\_container\_definitions | A list of valid container definitions provided as a single valid JSON document. By default, the standard container definition is used. | string | `""` | no |
-| custom\_environment\_variables | List of additional environment variables the container will use (list should contain maps with `name` and `value`) | list | `[]` | no |
+| custom\_environment\_variables | List of additional environment variables the container will use (list should contain maps with `name` and `value`) | list(string) | `[]` | no |
 | ecs\_service\_assign\_public\_ip | Should be true, if ECS service is using public subnets (more info: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_cannot_pull_image.html) | string | `"false"` | no |
 | ecs\_service\_deployment\_maximum\_percent | The upper limit (as a percentage of the service's desiredCount) of the number of running tasks that can be running in a service during a deployment | string | `"200"` | no |
 | ecs\_service\_deployment\_minimum\_healthy\_percent | The lower limit (as a percentage of the service's desiredCount) of the number of running tasks that must remain running and healthy in a service during a deployment | string | `"50"` | no |
@@ -72,11 +72,11 @@ Terraform version 0.11.13 or newer is required for this module to work.
 | env\_jwt\_secret\_key | JWT Token secret key | string | `""` | no |
 | environment | Deploy environment | string | `"production"` | no |
 | evn\_database\_uri | Database uri (ex: mysql://) | string | `""` | no |
-| policies\_arn | A list of the ARN of the policies you want to apply | list | `[ "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy" ]` | no |
+| policies\_arn | A list of the ARN of the policies you want to apply | list(string) | `[ "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy" ]` | no |
 | project | Project name to use on all resources created (VPC, ALB, etc) | string | n/a | yes |
-| security\_groups | ALB target group arns | list | n/a | yes |
-| subnet\_ids | A list of IDs of existing private subnets inside the VPC | list | `[]` | no |
-| tags | A map of tags to use on all resources | map | `{}` | no |
+| security\_groups | ALB target group arns | list(string) | n/a | yes |
+| subnet\_ids | A list of IDs of existing private subnets inside the VPC | list(string) | `[]` | no |
+| tags | A map of tags to use on all resources | map(string) | `{}` | no |
 | target\_group\_arn | ALB target group arn | string | n/a | yes |
 
 ## Outputs
