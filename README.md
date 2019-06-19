@@ -15,41 +15,41 @@ AWS ECS를 생성하는 Terraform 모듈 입니다.
 module "ecs" {
   source = "komskb/ecs/aws"
 
-  project = "${var.project}"
-  environment = "${var.environment}"
-  subnet_ids = ["${module.vpc.private_subnets}"]
-  security_groups = ["${module.alb.security_group_id}"]
-  target_group_arn = "${element(module.alb.target_group_arns, 0)}"
-  env_jwt_secret_key = "${var.jwt_secret_key}"
-  evn_database_uri = "${format("mysql+pymysql://%s:%s@%s:%s/%s?charset=utf8", module.rds.this_rds_cluster_master_username, module.rds.this_rds_cluster_master_password, module.rds.this_rds_cluster_endpoint, module.rds.this_rds_cluster_port, module.rds.this_rds_cluster_database_name)}"
+  project = var.project
+  environment = var.environment
+  subnet_ids = [module.vpc.private_subnets]
+  security_groups = [module.alb.security_group_id]
+  target_group_arn = element(module.alb.target_group_arns, 0)
+  env_jwt_secret_key = var.jwt_secret_key
+  evn_database_uri = format("mysql+pymysql://%s:%s@%s:%s/%s?charset=utf8", module.rds.this_rds_cluster_master_username, module.rds.this_rds_cluster_master_password, module.rds.this_rds_cluster_endpoint, module.rds.this_rds_cluster_port, module.rds.this_rds_cluster_database_name)
   custom_environment_variables = [
     {
       name = "PROJECT"
-      value = "${var.project}"
+      value = var.project
     },
     {
       name = "AWS_DEFAULT_REGION"
-      value = "${var.region}"
+      value = var.region
     },
     {
       name = "AWS_ACCESS_KEY_ID"
-      value = "${var.access_key}"
+      value = var.access_key
     },
     {
       name = "AWS_SECRET_ACCESS_KEY"
-      value = "${var.secret_key}"
+      value = var.secret_key
     }
   ]
   tags = {
-    Terraform = "${var.terraform_repo}"
-    Environment = "${var.environment}"
+    Terraform = var.terraform_repo
+    Environment = var.environment
   }
 }
 ```
 
 ## Terraform version
 
-Terraform version 0.11.13 or newer is required for this module to work.
+Terraform version 0.12.0 or newer is required for this module to work.
 
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
