@@ -61,7 +61,7 @@ Terraform version 0.12.0 or newer is required for this module to work.
 | cloudwatch\_log\_retention\_in\_days | Retention period of service CloudWatch logs | string | `"7"` | no |
 | container\_memory\_reservation | The amount of memory (in MiB) to reserve for the container | string | `"128"` | no |
 | custom\_container\_definitions | A list of valid container definitions provided as a single valid JSON document. By default, the standard container definition is used. | string | `""` | no |
-| custom\_environment\_variables | List of additional environment variables the container will use (list should contain maps with `name` and `value`) | list(string) | `[]` | no |
+| custom\_environment\_variables | List of additional environment variables the container will use (list should contain maps with `name` and `value`) | map(any) | `{}` | no |
 | ecs\_service\_assign\_public\_ip | Should be true, if ECS service is using public subnets (more info: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_cannot_pull_image.html) | string | `"false"` | no |
 | ecs\_service\_deployment\_maximum\_percent | The upper limit (as a percentage of the service's desiredCount) of the number of running tasks that can be running in a service during a deployment | string | `"200"` | no |
 | ecs\_service\_deployment\_minimum\_healthy\_percent | The lower limit (as a percentage of the service's desiredCount) of the number of running tasks that must remain running and healthy in a service during a deployment | string | `"50"` | no |
