@@ -30,10 +30,6 @@ locals {
   )
 }
 
-provider "aws" {
-  version = "~> 2.15"
-}
-
 data "aws_region" "current" {
 }
 
