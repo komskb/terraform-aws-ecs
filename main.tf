@@ -128,7 +128,7 @@ module "container_definition" {
       "awslogs-stream-prefix" = "ecs"
   }
 
-  environment = merge(local.container_definition_environment, var.custom_environment_variables, )
+  environment = concat(local.container_definition_environment, var.custom_environment_variables, )
 }
 
 resource "aws_ecs_task_definition" "this" {

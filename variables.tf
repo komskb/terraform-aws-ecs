@@ -110,7 +110,7 @@ variable "evn_database_uri" {
 
 variable "custom_environment_variables" {
   description = "List of additional environment variables the container will use (list should contain maps with `name` and `value`)"
-  type        = map(any)
-  default     = {}
+  type        = list(any)
+  default     = []
 }
 
