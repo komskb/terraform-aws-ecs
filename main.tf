@@ -3,12 +3,24 @@ locals {
   container_definitions = var.custom_container_definitions == "" ? module.container_definition.json : var.custom_container_definitions
   jwt_secret_key        = var.env_jwt_secret_key == "" ? random_string.jwt.result : var.env_jwt_secret_key
 
-  container_definition_environment = {
-    JWT_SECRET_KEY = local.jwt_secret_key
-    FLASK_ENV      = var.env_flask_env == "" ? "development" : var.env_flask_env
-    FLASK_DEBUG    = var.env_flask_env == "production" ? 0 : 1
-    DATABASE_URI   = var.evn_database_uri
-  }
+  container_definition_environment = [
+    {
+      name  = "JWT_SECRET_KEY"
+      value = local.jwt_secret_key
+    },
+    {
+      name  = "FLASK_ENV"
+      value = var.env_flask_env == "" ? "development" : var.env_flask_env
+    },
+    {
+      name  = "FLASK_DEBUG"
+      value = var.env_flask_env == "production" ? 0 : 1
+    },
+    {
+      name  = "DATABASE_URI"
+      value = var.evn_database_uri
+    },
+  ]
 
   tags = merge(
     var.tags,
